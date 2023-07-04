@@ -134,4 +134,7 @@ _NCrunch*
 
 **/zipped
 
+launch.json
+tasks.json
+
 SQLjoins.png
