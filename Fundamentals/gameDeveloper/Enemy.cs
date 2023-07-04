@@ -17,11 +17,11 @@ public class Enemy
         }
     public List<Attack> AttackList {get;set;}
 
-    public Enemy(string n)
+    public Enemy(string n, int health, List<Attack> attacks)
     {
         Name = n;
-        Health = 100;
-        AttackList = new List<Attack>();
+        Health = health;
+        AttackList = attacks;
     }
 
     public void AddAttack(Attack a)
@@ -34,6 +34,12 @@ public class Enemy
     {
         int randNum = rand.Next(AttackList.Count);
         return AttackList[randNum].Name;
+    }
+
+    public void PerformAttack(Enemy target, Attack atk)
+    {
+        Console.WriteLine($"{Name} attacks {target.Name}");
+        Console.WriteLine($"Dealing {atk.DamageAmount} damage. {target.Name}'s health is now {target.Health}!");
     }
 
 }
