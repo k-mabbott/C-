@@ -3,6 +3,7 @@
 public class Enemy 
 {
     public string Name;
+    public int MaxHealth;
     private int Health;
         public int _Health
         {
@@ -10,18 +11,19 @@ public class Enemy
             {
                 return Health;
             }
-            // set
-            // {
-            //     Health = value;
-            // }
+            set
+            {
+                Health = value;
+            }
         }
     public List<Attack> AttackList {get;set;}
 
-    public Enemy(string n, int health, List<Attack> attacks)
+    public Enemy(string n, int health)
     {
         Name = n;
         Health = health;
-        AttackList = attacks;
+        MaxHealth = health;
+        AttackList = new List<Attack>();
     }
 
     public void AddAttack(Attack a)
@@ -30,15 +32,29 @@ public class Enemy
     }
 
     Random rand = new Random();
-    public string RandomAttack()
+    public Attack RandomAttack()
     {
         int randNum = rand.Next(AttackList.Count);
-        return AttackList[randNum].Name;
+        return AttackList[randNum];
     }
 
-    public void PerformAttack(Enemy target, Attack atk)
+    public virtual void PerformAttack(Enemy target, Attack atk)
     {
-        Console.WriteLine($"{Name} attacks {target.Name}");
+        if (_Health == 0 )
+        {
+            Console.WriteLine($"Sorry {Name} has no health left you can not attack...");
+            return;
+        } else if (target._Health == 0 )
+        {
+            Console.WriteLine($"You already took care of {target.Name} pick on someone who still has health left!");
+        }
+        
+        Console.WriteLine($"{Name} attacks {target.Name} Using {atk}");
+        target._Health -= atk.DamageAmount;
+        if (target._Health < 0 )
+        {
+            target._Health = 0;
+        }
         Console.WriteLine($"Dealing {atk.DamageAmount} damage. {target.Name}'s health is now {target.Health}!");
     }
 

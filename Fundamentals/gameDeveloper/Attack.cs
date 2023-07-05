@@ -11,8 +11,9 @@ public class Attack
         DamageAmount = d;
     }
 
-
-
-
+    public override string ToString()
+    {
+        return Name;
+    }
 
 }
