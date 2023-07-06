@@ -2,7 +2,7 @@
     // public string Color {get;set;}; Keep in mind.
 
 
-class Vehicle 
+public abstract class Vehicle 
 {
     string Name;
     public string _Name
@@ -16,10 +16,10 @@ class Vehicle
                 Name = value;
             }
         }
-    int NumOfPass;
-    string Color;
-    bool HasEngine;
-    int Miles;
+    public int NumOfPass;
+    public string Color;
+    public bool HasEngine;
+    public int Miles;
 
     public Vehicle(string name, int pass, string color, bool eng)
     {
@@ -47,6 +47,11 @@ class Vehicle
     {
         Miles += dist;
         Console.WriteLine($"{Name} went {dist} miles. Total miles are now {Miles}.");
+    }
+
+        public override string ToString()
+    {
+        return _Name;
     }
 
 }

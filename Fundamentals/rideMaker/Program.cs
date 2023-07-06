@@ -6,23 +6,52 @@ Console.WriteLine("Hello, World!");
 //    public Vehicle(string name, string color)
 
 
-Vehicle Chevy = new Vehicle("Chevy",6,"Pewter",true);
-Vehicle Skateboard = new Vehicle("Baker",1,"Red & Black",false);
-Vehicle RX7 = new Vehicle("Mazda", "Maroon");
-Vehicle GSXR = new Vehicle("Suzuki", 2, "Blue", true);
+Car Chevy = new Car("Chevy",6,"Pewter");
+// Vehicle Skateboard = new Vehicle("Baker",1,"Red & Black",false);
+Horse Clyde = new Horse("Clyde",2 ,"Spotted");
+Bicycle Huffy = new Bicycle("Huffy", 1, "Red" );
 
-List<Vehicle> vehicleList = new List<Vehicle>() {Chevy, Skateboard, RX7, GSXR};
+List<Vehicle> vehicleList = new List<Vehicle>() {Chevy, Clyde, Huffy};
 
-foreach(Vehicle car in vehicleList)
+List<INeedFuel> FuelList = new List<INeedFuel>() {};
+
+foreach(Vehicle v in vehicleList)
 {
-    car.ShowInfo();
+    if (v is INeedFuel)
+    {
+        // Console.WriteLine(v);
+        // FuelList.Add(v as INeedFuel);   // Could be null
+        FuelList.Add((INeedFuel) v);       // Explicit Must be INeedFuel or will Error.
+    }
 }
-RX7.Travel(100);
-GSXR.Travel(267);
-foreach(Vehicle car in vehicleList)
+
+foreach(INeedFuel f in FuelList) 
 {
-    car.ShowInfo();
+    f.GiveFuel(10);
+    Console.WriteLine($"{f}, {f.FuelTotal}");
 }
+
+// foreach(INeedFuel f in FuelList) 
+// {
+//     Console.WriteLine($"{f}, {f.FuelTotal}");
+// }
+
+
+
+// foreach(Vehicle car in vehicleList)
+// {
+//     car.ShowInfo();
+// }
+// RX7.Travel(100);
+// GSXR.Travel(267);
+// foreach(Vehicle car in vehicleList)
+// {
+//     car.ShowInfo();
+// }
+
+
+
+
 // No it does not let me change the field manually as it is set to private. 
 // This is better so the user can not change the Miles to whatever they want. 
 // If we add validations the user would be able to bypass the validations and
