@@ -1,8 +1,40 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model Survey
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <form asp-action="submitted" asp-controller="Home" method="post" class="card">
+        <div class="input">
+            <span asp-validation-for="Name" class="text-danger" ></span>
+            <label asp-for="Name">Your Name: </label>
+            <input asp-for="Name" placeholder="John Doe">
+        </div>
+        <div class="input">
+            <span asp-validation-for="Location" class="text-danger" ></span>
+            <label asp-for="Location">Dojo Location: </label>
+            <select asp-for="Location" >
+                <option value="" hidden selected>Please select an option</option>
+                <option value="Seattle">Seattle</option>
+                <option value="San Jose">San Jose</option>
+                <option value="Dallas">Dallas</option>
+            </select>
+        </div>
+        <div class="input">
+            <span asp-validation-for="Language" class="text-danger" ></span>
+            <label asp-for="Language">Favorite Language: </label>
+            <select asp-for="Language">
+                <option value="" hidden selected>Please select an option</option>
+                <option value="C#">C#</option>
+                <option value="Python">Python</option>
+                <option value="JavaScript">JavaScript</option>
+            </select>
+        </div>
+        <div class="input">
+            <span asp-validation-for="Comment" class="text-danger" ></span>
+            <label asp-for="Comment">Comment: </label>
+            <textarea asp-for="Comment" cols="30" rows="5" placeholder="Add comment here..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-outline-success w-50 align-self-center">Submit</button>
+    </form>
 </div>

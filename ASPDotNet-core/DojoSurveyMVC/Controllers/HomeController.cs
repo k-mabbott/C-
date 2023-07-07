@@ -18,9 +18,21 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Privacy()
+    [HttpGet("After")]
+    public IActionResult After(Survey info)
     {
-        return View();
+        return View("After", info);
+    }
+
+    [HttpPost("submitted")]
+    public IActionResult Submitted(Survey info)
+    {   
+        if(ModelState.IsValid)
+        {
+            return RedirectToAction("after", info);
+        } else {
+            return View("Index");
+        }
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

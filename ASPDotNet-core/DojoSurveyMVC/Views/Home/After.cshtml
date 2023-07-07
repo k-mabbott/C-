@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Submitted Info";
+}
+@* <h1>@ViewData["Title"]</h1> *@
+
+@model Survey
+
+<section class="submitted">
+    <h1 class="ul">Submitted Info</h1>
+    <div class="info">
+        <p>Name:</p>
+        <p>@Model.Name</p>
+    </div>
+    <div class="info">
+        <p>Dojo Location:</p>
+        <p>@Model.Location</p>
+    </div>
+    <div class="info">
+        <p>Favorite Language:</p>
+        <p>@Model.Language</p>
+    </div>
+    <div class="info">
+        <p>Comment (optional):</p>
+        @if (Model.Comment == null)
+        {
+            <p style="color:gray"> No comment</p>
+        }
+        else
+        {
+            <p>@Model.Comment</p>
+        }
+    </div>
+    <a href="/">Go Back</a>
+</section>
