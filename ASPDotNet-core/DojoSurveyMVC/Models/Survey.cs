@@ -8,7 +8,7 @@ public class Survey
 
     [Required]
     [MinLength(2)]
-    public string? Name { get; set; }
+    public string? Name { get; set; } // ? may cause problems
 
     [Required]
 
