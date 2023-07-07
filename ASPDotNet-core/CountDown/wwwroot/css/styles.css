@@ -1,0 +1,23 @@
+
+body {
+    text-align: center;
+    font-weight: 600;
+}
+
+.card {
+    margin: 2rem auto;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+.time {
+    border: 2px solid black;
+    width: 25vw;
+    height: 25vh;
+    text-align: center;
+    font-weight: 600;
+}
+
+h2{
+    margin-bottom: 2.5rem;
+}

@@ -1,0 +1,14 @@
+
+@{
+    ViewData["Title"] = "Numbers";
+}
+
+@model Array
+
+<div>
+    <h1>Here are your Numbers</h1>
+    @foreach(int n in Model)
+    {
+        <p> @n </p>
+    }
+</div>

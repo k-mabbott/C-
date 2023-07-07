@@ -1,0 +1,48 @@
+
+body {
+  text-align: center;
+  font-weight: 600;
+}
+
+.card {
+  margin: 2rem auto;
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  border: 2px solid black;
+  padding: 2rem;
+}
+
+.time {
+  width: 25vw;
+  height: 25vh;
+  text-align: center;
+  font-weight: 600;
+}
+
+.ul {
+  text-decoration: underline;
+}
+
+.submitted {
+  border: 2px solid black;
+  margin: 1rem auto;
+  padding: 5rem;
+  text-align: center;
+  width: 50vw;
+  height: 50vh;
+}
+
+.info {
+  display: flex;
+}
+
+h2{
+  margin-bottom: 2.5rem;
+}
+button {
+  width: 25%;
+  align-self: end;
+}

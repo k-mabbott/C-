@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/styles.css">
+    <title>Count Down!</title>
+</head>
+
+<body>
+    <h1>Hi!</h1>
+    <div class="card">
+        <div class="time">
+            <h2>Start Time</h2>
+            <p>@ViewBag.CurrDate</p>
+        </div>
+        <div class="time">
+            <h2>End Time</h2>
+            <p>@ViewBag.LaterDate</p>
+            <h4>AKA Rubens Birthday</h4>
+        </div>
+    </div>
+    <p>@ViewBag.Diff Remaining</p>
+</body>
+
+</html>

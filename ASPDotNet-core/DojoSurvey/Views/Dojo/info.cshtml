@@ -1,0 +1,41 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/styles.css">
+    <title>My Info</title>
+</head>
+<body>
+        <nav>
+        <a href="/">Home</a>
+    </nav>
+    <main class="submitted">
+        <h1 class="ul" >Submitted Info</h1>
+        <div class="info" >
+            <p>Name:</p>
+            <p>@ViewBag.name</p>
+        </div>
+        <div class="info">
+            <p>Dojo Location:</p>
+            <p>@ViewBag.location</p>
+        </div>
+        <div class="info">
+            <p>Favorite Language:</p>
+            <p>@ViewBag.lang</p>
+        </div>
+        <div class="info">
+            <p>Comment (optional):</p>
+            @if(ViewBag.comment == null)
+            {
+                <p style="color:gray" > No comment</p>
+            } else {
+                <p>@ViewBag.comment</p>
+            }
+        </div>
+        <a href="/">Go Back</a>
+    </main>
+</body>
+</html>

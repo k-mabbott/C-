@@ -13,7 +13,12 @@ public class Attack
 
     public override string ToString()
     {
-        return Name;
+        return $"Name: {Name}, Damage: {DamageAmount}";
     }
-
 }
+
+
+
+
+// Console.WriteLine(Knife.Name);
+// Console.WriteLine();
