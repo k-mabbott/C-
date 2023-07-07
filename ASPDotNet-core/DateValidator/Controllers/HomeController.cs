@@ -1,14 +1,11 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using DojoSurveyMVC.Models;
+using DateValidator.Models;
 
-namespace DojoSurveyMVC.Controllers;
+namespace DateValidator.Controllers;
 
 public class HomeController : Controller
 {
-
-    static Survey MyInfo;
-
     private readonly ILogger<HomeController> _logger;
 
     public HomeController(ILogger<HomeController> logger)
@@ -21,22 +18,9 @@ public class HomeController : Controller
         return View();
     }
 
-    [HttpGet("After")]
-    public IActionResult After()
+    public IActionResult Privacy()
     {
-        return View("After", MyInfo);
-    }
-
-    [HttpPost("submitted")]
-    public IActionResult Submitted(Survey info)
-    {   
-        if(ModelState.IsValid)
-        {
-            MyInfo = info;
-            return RedirectToAction("after");
-        } else {
-            return View("Index");
-        }
+        return View();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
