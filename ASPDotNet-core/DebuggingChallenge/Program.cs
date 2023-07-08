@@ -14,6 +14,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 // Hint: is everything that needs to be here listed?
+app.UseSession(); // Added This
 
 app.UseStaticFiles();
 

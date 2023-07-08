@@ -39,10 +39,10 @@ public class HomeController : Controller
         }
     }
 
-    [HttpGet("generator")]
+    [HttpGet("generator")] // Changed name of file to Genertator
     public IActionResult Generator()
     {
-        if(HttpContext.Session.GetString("Name") == null)
+        if(HttpContext.Session.GetString("Username") == null)
         {
             return RedirectToAction("Index");
         }
@@ -64,6 +64,7 @@ public class HomeController : Controller
     [HttpPost("generate/new")]
     public IActionResult GenerateNew()
     {
+        GeneratePasscode();
         return RedirectToAction("Generator");
     }
 
