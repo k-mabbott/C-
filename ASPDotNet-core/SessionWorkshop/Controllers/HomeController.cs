@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using DateValidator.Models;
+using SessionWorkshop.Models;
 
-namespace DateValidator.Controllers;
+namespace SessionWorkshop.Controllers;
 
 public class HomeController : Controller
 {
@@ -21,22 +21,6 @@ public class HomeController : Controller
     public IActionResult Privacy()
     {
         return View();
-    }
-
-    [HttpPost("process")]
-    public IActionResult Process(NewDate myDate)
-    {
-        // if (ModelState.IsValid)
-        // {
-        Console.WriteLine(myDate.MyDate);
-        //     return RedirectToAction("Privacy");
-        // }
-        // else
-        // {
-        // ViewBag.Date = myDate;
-            
-        return View("Index");
-        // }
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

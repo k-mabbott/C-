@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Success!";
+}
+
+
+
+@model FormInfo
+
+<section>
+    <h1>Successfully Registered!</h1>
+    <p>@Model.Name</p>
+    <p>@Model.Email</p>
+    <p>@Model.DateOfBirth</p>
+    <p>@ViewBag.Date</p>
+    <p>@Model.Password</p>
+    <p>@Model.FavOddNum</p>
+    <a href="/" class="btn btn-outline-secondary" >Go Back</a>
+</section>

@@ -1,0 +1,27 @@
+// Add to Program.cs for Session
+
+builder.Services.AddHttpContextAccessor();  
+builder.Services.AddSession(); 
+
+app.UseSession(); 
+
+**
+USING SESSION 
+ -Get
+HttpContext.Session.SetString("UserName", "Samantha");
+HttpContext.Session.SetInt32("UserAge", 28);
+
+ -Set
+string LocalVariable = HttpContext.Session.GetString("UserName");
+int? IntVariable = HttpContext.Session.GetInt32("UserAge");
+
+-Clear
+HttpContext.Session.Clear();
+
+-Get Session in View
+@Context.Session.GetString("KeyName")
+-------------------------------------------------
+
+// Disable null warnings in controller 
+
+#pragma warning disable CS8618
