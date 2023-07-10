@@ -32,15 +32,17 @@ List<Eruption> eruptions = new List<Eruption>()
 // Find the first eruption from the "Hawaiian Is" location and print it. 
 // If none is found, print "No Hawaiian Is Eruption found."
 
-// Eruption FirstInChile = eruptions.FirstOrDefault(e => e.Location == "Hawaiian Is")!;
-// if (FirstInChile == null)
-// {
-//     Console.WriteLine("No Hawaiian Is Eruption found.");
-// }
-// else
-// {
-//     Console.WriteLine(FirstInChile);
-// }
+// Eruption FirstInHawaii = eruptions.FirstOrDefault(e => e.Location == "Hawaiian Is")!;
+// // if (FirstInHawaii == null)
+// // {
+// //     Console.WriteLine("No Hawaiian Is Eruption found.");
+// // }
+// // else
+// // {
+// //     Console.WriteLine(FirstInHawaii);
+// // }
+// Console.WriteLine(FirstInHawaii != null ? FirstInHawaii : "No Hawaiian Is Eruption found.");
+
 
 
 // Find the first eruption from the "Greenland" location and print it. 

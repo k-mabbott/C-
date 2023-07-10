@@ -3,6 +3,87 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to our Games Store</h1>
+    @* <div>
+    @foreach (Game g in ViewBag.AllTheGames)
+    {
+    <hr>
+    <p>@g.Title</p>
+    <p>@g.Price</p>
+    <p>@g.Genre</p>
+    <p>@g.Rating</p>
+    <p>@g.Platform</p>
+    <hr>
+    }
+    </div> *@
+    <h2 class="display-4">All of our Games By Price and Title</h2>
+    <table class="table table-striped table-hover table-dark">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Genre</th>
+                <th>Rating</th>
+                <th>Platform</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Game g in ViewBag.AllTheGames)
+            {
+                <tr>
+                    <td>@g.Title</td>
+                    <td>$ @g.Price</td>
+                    <td>@g.Genre</td>
+                    <td>@g.Rating</td>
+                    <td>@g.Platform</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <h2 class="display-4">All of our Games Rated T or On all Platforms</h2>
+    <table class="table table-striped table-hover table-dark">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Genre</th>
+                <th>Rating</th>
+                <th>Platform</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Game g in ViewBag.AllPlatforms)
+            {
+                <tr>
+                    <td>@g.Title</td>
+                    <td>$ @g.Price</td>
+                    <td>@g.Genre</td>
+                    <td>@g.Rating</td>
+                    <td>@g.Platform</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <h2 class="display-4">Lowest price Rated M Game.</h2>
+    <table class="table table-striped table-hover table-dark">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Genre</th>
+                <th>Rating</th>
+                <th>Platform</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@ViewBag.ThisOne.Title</td>
+                <td>$ @ViewBag.ThisOne.Price</td>
+                <td>@ViewBag.ThisOne.Genre</td>
+                <td>@ViewBag.ThisOne.Rating</td>
+                <td>@ViewBag.ThisOne.Platform</td>
+            </tr>
+
+        </tbody>
+    </table>
 </div>
