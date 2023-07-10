@@ -22,7 +22,7 @@ public class FormInfo
 
     [Required]
     [DataType(DataType.Password)]
-    [MinLength(8, ErrorMessage ="Name must be at least 8 characters long.")]
+    [MinLength(8, ErrorMessage ="Password must be at least 8 characters long.")]
     public string? Password {get;set;}
 
 
