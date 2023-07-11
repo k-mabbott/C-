@@ -2,7 +2,39 @@
     ViewData["Title"] = "Home Page";
 }
 
+@model User
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4 m-4">Welcome</h1>
+    <form asp-action="CreateUser" asp-controller="Home" method="post" class="form-control" >
+    <div class="m-3" >
+        <label for="FirstName">First Name: </label>
+        <span class="d-block text-danger" asp-validation-for="FirstName"></span>
+        <input asp-for="FirstName" class="form-control" >
+    </div>
+    <div class="m-3" >
+        <label for="LastName">Last Name: </label>
+        <span class="d-block text-danger" asp-validation-for="LastName"></span>
+        <input asp-for="LastName" class="form-control" >
+    </div>
+    <div class="m-3" >
+        <label for="Email">Email: </label>
+        <span class="d-block text-danger" asp-validation-for="Email"></span>
+        <input asp-for="Email" class="form-control" >
+    </div>
+    <div class="m-3" >
+        <label for="Password">Password: </label>
+        <span class="d-block text-danger" asp-validation-for="Password"></span>
+        <input asp-for="Password" class="form-control" >
+    </div>
+    <div class="m-3" >
+        <label for="Robot" class="d-block mb-3" >Are you a Robot? </label>
+        <span class="d-block text-danger" asp-validation-for="Robot"></span>
+        <label for="Robot">Yes:</label>
+        <input type="radio" asp-for="Robot" value="true" class="form-check-input" >
+        <label for="Robot">No:</label>
+        <input type="radio" asp-for="Robot" value="false" class="form-check-input" >
+    </div>
+    <button type="submit" class="btn btn-outline-primary mb-3" >Add Profile!</button>
+    </form>
 </div>

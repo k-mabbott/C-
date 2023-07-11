@@ -1,6 +1,48 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
 }
-<h1>@ViewData["Title"]</h1>
+<h1 class="text-center" >@ViewData["Title"]</h1>
+@model User
+<p class="text-center" >Use this page to detail your site's privacy policy.</p>
 
-<p>Use this page to detail your site's privacy policy.</p>
+
+<table class="table table-striped table-hover table-dark" >
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Robot</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (User u in ViewBag.AllUsers)
+        {
+        <tr>
+            <td>@u.FirstName</td>
+            <td>@u.LastName</td>
+            <td>@u.Email</td>
+            <td>@u.Robot</td>
+        </tr>
+        }
+    </tbody>
+</table>
+<h2 class="text-center" >Just one User</h2>
+<table class="table table-striped table-hover table-dark" >
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Robot</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@ViewBag.user.FirstName</td>
+            <td>@ViewBag.user.LastName</td>
+            <td>@ViewBag.user.Email</td>
+            <td>@ViewBag.user.Robot</td>
+        </tr>
+    </tbody>
+</table>

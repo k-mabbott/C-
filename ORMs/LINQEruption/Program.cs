@@ -70,11 +70,13 @@ List<Eruption> eruptions = new List<Eruption>()
 // IEnumerable<Eruption> HighElevations = eruptions.Where(e => e.ElevationInMeters > 2000 );
 // PrintEach(HighElevations, "All Volcano's over 2000m");
 
-// Find all eruptions where the volcano's name starts with "L" and print them. 
+// Find all eruptions where the volcano's name starts with "L" and print them.
 // Also print the number of eruptions found.
 
 // IEnumerable<Eruption> StartsWithL = eruptions.Where(e => e.Volcano[0] == 'L' ||  e.Volcano[0] == 'l' );
 // PrintEach(StartsWithL, "All Volcano's that start with the letter 'L'");
+// Console.WriteLine(StartsWithL.Count());
+
 
 // Find the highest elevation, and print only that integer (Hint: Look up 
 // how to use LINQ to find the max!)
@@ -90,8 +92,9 @@ List<Eruption> eruptions = new List<Eruption>()
 
 // Print all Volcano names alphabetically.
 
-// List<Eruption> Alphabetically = eruptions.OrderBy(e => e.Volcano).ToList();
-// PrintEach(Alphabetically, "Volcano's in alphabetical order");
+// List<string> Alphabetically = eruptions.OrderBy(e => e.Volcano).Select(p => p.Volcano).ToList();
+// Alphabetically.ForEach(n => Console.WriteLine(n));
+
 
 // Print the sum of all the elevations of the volcanoes combined.
 
@@ -102,7 +105,7 @@ List<Eruption> eruptions = new List<Eruption>()
 // Print whether any volcanoes erupted in the year 2000 (Hint: look up 
 // the Any query)
 
-// bool Year2000 = eruptions.Any(e => e.Year == 2008);
+// bool Year2000 = eruptions.Any(e => e.Year == 2000);
 // Console.WriteLine(Year2000);
 
 // Find all stratovolcanoes and print just the first three (Hint: look 
@@ -114,18 +117,18 @@ List<Eruption> eruptions = new List<Eruption>()
 // Print all the eruptions that happened before the year 1000 CE 
 // alphabetically according to Volcano name.
 
-IEnumerable<Eruption> Before1000 = eruptions.Where(e => e.Year < 1000);
-PrintEach(Before1000, "Eruptions that happened before the year 1000 CE");
+// IEnumerable<Eruption> Before1000 = eruptions.Where(e => e.Year < 1000).OrderBy(v => v.Volcano);
+// PrintEach(Before1000, "Eruptions that happened before the year 1000 CE");
 
 // Redo the last query, but this time use LINQ to only select the 
 // volcano's name so that only the names are printed.
 
-List<string> Before1000Names = eruptions.Where(e => e.Year < 1000).Select(e => e.Volcano).ToList();
+// List<string> Before1000Names = eruptions.Where(e => e.Year < 1000).OrderBy(v => v.Volcano).Select(e => e.Volcano).ToList();
 
-foreach(string n in Before1000Names)
-{
-    Console.WriteLine(n);
-}
+// foreach(string n in Before1000Names)
+// {
+//     Console.WriteLine(n);
+// }
 
 
 
