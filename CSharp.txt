@@ -84,7 +84,9 @@ appsettings.json
         "DefaultConnection": "Server=localhost;port=3306;userid=root;password=root;database=!!monsterdb;"    
     }
 
+-------------------------------------------------
 Program.cs
+-----------
 
 // Add this using statement
 using Microsoft.EntityFrameworkCore;
@@ -185,4 +187,7 @@ public class HomeController : Controller
         return View();    
     } 
 }
+
+
+
      

@@ -1,0 +1,33 @@
+
+@model Dish
+
+<div>
+    <form asp-action="CreateDish" asp-controller="Dish" method="post">
+        <div>
+            <label asp-for="Name"></label>
+            <span asp-validation-for="Name" ></span>
+            <input asp-for="Name" type="text">
+        </div>
+        <div>
+            <label asp-for="Chef"></label>
+            <span asp-validation-for="Chef" ></span>
+            <input asp-for="Chef" type="text">
+        </div>
+        <div>
+            <label asp-for="Tastiness"></label>
+            <span asp-validation-for="Tastiness" ></span>
+            <input asp-for="Tastiness" type="text">
+        </div>
+        <div>
+            <label asp-for="Calories"></label>
+            <span asp-validation-for="Calories" ></span>
+            <input asp-for="Calories">
+        </div>
+        <div>
+            <label asp-for="Description"></label>
+            <span asp-validation-for="Description" ></span>
+            <textarea asp-for="Description" id="Description" cols="30" rows="5"></textarea>
+        </div>
+        <button></button>
+    </form>
+</div>
