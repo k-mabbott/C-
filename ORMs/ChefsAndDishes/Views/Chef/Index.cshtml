@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model List<Chef>
+
+<div class="text-center">
+    <h2 class="display-4">Check out our roster of chefs!</h2>
+    <hr>
+    <table class="table table-secondary table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Number of Dishes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ foreach (var c in Model)
+            {
+                <tr>
+                    <td>@c.FirstName @c.LastName</td>
+                    @{
+                            DateTime Curr = DateTime.Today;
+                            DateTime Val = (DateTime)c.DoB;
+                            int age = 0;
+                            age = DateTime.Now.AddYears(-Val.Year).Year;
+                        }
+                    <td>@age</td>
+                    <td>@c.AllDishes.Count</td>
+                </tr>
+            } }
+        </tbody>
+    </table>
+</div>

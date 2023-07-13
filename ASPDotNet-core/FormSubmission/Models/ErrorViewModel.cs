@@ -21,6 +21,8 @@ public class OnlyOddNumsAttribute : ValidationAttribute
             return new ValidationResult("Date of Birth must be provided!");
         }
 
+
+
         if (((int)value) % 2 == 0)
         {
             return new ValidationResult("Whole odd numbers only please!");
@@ -82,7 +84,7 @@ public class MustBePresentAttribute : ValidationAttribute
         DateTime Curr = DateTime.Today;
         int Diff = DateTime.Compare((DateTime)value, Curr);
         // Console.WriteLine(Diff);
-        if (Diff > 0)
+        if (Diff >= 0)
         {
             return new ValidationResult("Date of Birth must be in the past!");
         }

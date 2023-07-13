@@ -1,12 +1,12 @@
 
 @{
-    ViewData["Title"] = "New Dish";
+    ViewData["Title"] = "Edit Dish";
 }
 
 @model Dish
 
 <div>
-    <form asp-action="CreateDish" asp-controller="Dish" method="post" class="container form-control" >
+    <form asp-action="UpdateDish" asp-controller="Dish" method="post" asp-route-dishId="@Model.DishId" class="container form-control" >
         <div>
             <label asp-for="Name"></label>
             <span asp-validation-for="Name" class="d-block text-danger font-weight-bold" ></span>
@@ -20,7 +20,7 @@
         <div>
             <label asp-for="Tastiness"></label>
             <span asp-validation-for="Tastiness" class="d-block text-danger font-weight-bold" ></span>
-            <select name="Tastiness" id="Tastiness" class="form-select">
+            <select asp-for="Tastiness" id="Tastiness" class="form-select">
                 <option value="" selected hidden >Please Select one</option>
                 <option value="1">One (not good)</option>
                 <option value="2">Two</option>
@@ -39,6 +39,6 @@
             <span asp-validation-for="Description" class="d-block text-danger font-weight-bold" ></span>
             <textarea asp-for="Description" id="Description" cols="30" rows="5" class="form-control" ></textarea>
         </div>
-        <button type="submit" class="btn btn-outline-success m-3" >Add a Dish!</button>
+        <button type="submit" class="btn btn-outline-success m-3" >Edit Dish!</button>
     </form>
 </div>

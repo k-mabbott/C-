@@ -1,0 +1,45 @@
+@{
+    ViewData["Title"] = "New Dish";
+}
+
+@model Dish
+
+<div>
+    <form asp-action="CreateDish" asp-controller="Dish" method="post" class="container form-control">
+        <div>
+            <label asp-for="Name"></label>
+            <span asp-validation-for="Name" class="d-block text-danger font-weight-bold"></span>
+            <input asp-for="Name" type="text" class="form-control">
+        </div>
+        <div>
+            <label asp-for="ChefId"></label>
+            <span asp-validation-for="ChefId" class="d-block text-danger font-weight-bold"></span>
+            <select asp-for="ChefId" id="ChefId" class="form-select">
+                <option selected hidden>Please Select a Chef</option>
+                @{foreach (var c in ViewBag.Chefs)
+                {
+                    <option value="@c.ChefId">@c.FirstName @c.LastName</option>
+                }
+                }
+            </select>
+        </div>
+        <div>
+            <label asp-for="Tastiness"></label>
+            <span asp-validation-for="Tastiness" class="d-block text-danger font-weight-bold"></span>
+            <select asp-for="Tastiness" id="Tastiness" class="form-select">
+                <option value="" selected hidden>Please Select one</option>
+                <option value="1">One (not good)</option>
+                <option value="2">Two</option>
+                <option value="3">Three (take it or leave it)</option>
+                <option value="4">Four</option>
+                <option value="5">Five (the best!)</option>
+            </select>
+        </div>
+        <div>
+            <label asp-for="Calories"></label>
+            <span asp-validation-for="Calories" class="d-block text-danger font-weight-bold"></span>
+            <input asp-for="Calories" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-outline-success m-3">Add a Dish!</button>
+    </form>
+</div>

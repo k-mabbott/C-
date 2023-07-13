@@ -10,9 +10,9 @@ dotnet add package Pomelo.EntityFrameworkCore.MySql --version 6.0.1
 dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.3
 
 
----------------------------------
-// Add to Program.cs for Session
----------------------------------
+-----------------------------------
+// Add to Program.cs for Session   
+-----------------------------------
 
 builder.Services.AddHttpContextAccessor();  
 builder.Services.AddSession(); 
@@ -86,7 +86,7 @@ appsettings.json
 
 -------------------------------------------------
 Program.cs
------------
+-------------------------------------------------
 
 // Add this using statement
 using Microsoft.EntityFrameworkCore;
@@ -106,19 +106,6 @@ builder.Services.AddDbContext<MyContext>(options =>
 {
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
-
--------------------------------------------------
-
-
--------------------------------------------------
-How to do Migrations
--------------------------------------------------
-
-dotnet ef migrations add FirstMigration     // HAVE to change the name each time. 
-
-dotnet ef database update                   // Apply changes to Database.
-
-dotnet ef migrations add FirstMigration -v  // If failed This code with the added '-v' Can show errors
 
 
 -------------------------------------------------
@@ -142,6 +129,7 @@ Model Example
 
 #pragma warning disable CS8618
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace YourProjectName.Models;
 public class Monster
 {
@@ -187,6 +175,130 @@ public class HomeController : Controller
         return View();    
     } 
 }
+
+
+-------------------------------------------------
+How to do Migrations
+-------------------------------------------------
+
+dotnet ef migrations add FirstMigration     // HAVE to change the name each time. 
+
+dotnet ef database update                   // Apply changes to Database.
+
+dotnet ef migrations add FirstMigration -v  // If failed This code with the added '-v' Can show errors
+
+
+-------------------------------------------------
+Partials
+-------------------------------------------------
+_ViewImports.cshtml
+// Should Include this.
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+**EXAMPLE 
+
+  - _Navbar.cshtml
+
+<ul>        
+    <li><a href="/">Home</a></li>        
+    <li><a href="/about">About Me</a></li>    
+</ul>
+
+** HOW TO LOAD 
+<p></p>
+@await Html.PartialAsync("_Navbar")
+<p></p>
+
+
+-------------------------------------------------
+Login / Registration
+-------------------------------------------------
+// For Model 
+using Microsoft.AspNetCore.Identity;
+
+[RegularExpression(@"^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$", ErrorMessage = "Invalid email format")]
+
+// For Controller 
+using Microsoft.AspNetCore.Mvc.Filters;
+
+
+        if(ModelState.IsValid)        
+        {
+            // Initializing a PasswordHasher object, providing our User class as its type            
+            PasswordHasher<User> Hasher = new PasswordHasher<User>();   
+            // Updating our newUser's password to a hashed version         
+            newUser.Password = Hasher.HashPassword(newUser, newUser.Password);            
+            //Save your user object to the database 
+            _context.Add(newUser);
+            _context.SaveChanges();       
+        } else {
+            // handle else
+        }  
+
+
+
+-------------------------------------------------
+One to Many 
+-------------------------------------------------
+ ** Model
+
+eg. Users have Posts. 
+
+// Add to User - public List<Post> AllPosts { get; set; } = new List<Post>();
+// Add to Post - public int UserId { get; set; }
+               - public User? Author { get; set; } // Navigation property
+
+-------------------------------------------------
+
+** Controller
+//Must have for Inlucdes
+using Microsoft.EntityFrameworkCore; 
+
+Example Queries
+
+// All posts with authors.
+    List<Post> AllPosts = _context.Posts.Include(c => c.Author).ToList();  
+  
+// All posts by a single user.    
+    User? MyUser = _context.Users.Include( p => p.AllPosts).FirstOrDefault(i => i.UserId == id);
+
+
+// Number of posts created by this User    
+int numPosts = _context.Users        
+// Including Posts, so that we may query on this field        
+                        .Include(user => user.AllPosts)        
+// Get a User with a particular UserId        
+                        .FirstOrDefault(user => user.UserId == userId)        
+// Now, with a reference to a User object, and access to a User's Posts
+// we can get the .Count property of the Posts List        
+                        .AllPosts.Count;
+         
+// User with the longest Post, we can do this in two stages    
+// First, find the Length of the longest Post
+int longestPostLength = _context.Posts.Max(post => post.Content.Length);         
+// Second, select one User whose AllPosts has Any that matches this character count    
+// Note here that AllPosts is a List, and thus can take a LINQ expression such as .Any()    
+User userWithLongest = _context.Users        
+                               .Include(user => user.AllPosts)        
+                               .FirstOrDefault(user => user.AllPosts
+                               .Any(c => c.Content.Length == longestPostLength));         
+// Posts NOT related to this User:    
+// Since this query only requires checking a Post's UserId    
+// and doesn't require us to check data contained in a Post's Creator    
+// we can do this WITHOUT a .Include()    
+List<Post> unrelatedPosts = _context.Posts.Where(c => c.UserId != userId).ToList();
+
+
+
+
+
+
+
+
+
+
+
 
 
 
