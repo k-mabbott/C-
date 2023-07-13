@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace LoginRegistration.Models;
 
 
+[NotMapped]
 public class LoginUser
 {
     [Required]
@@ -19,3 +20,4 @@ public class LoginUser
 
     public string LoginPassword { get; set; }
 }
+

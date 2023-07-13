@@ -18,7 +18,7 @@ public class Dish
 
 
     [Required (ErrorMessage="The Tastiness field is required")]
-    [Range(1,5, ErrorMessage ="Must be at least 1 and less than 6")]
+    [Range(1,5, ErrorMessage ="Must be at least 1 and less than 5")]
     public int? Tastiness { get; set; }
 
 
@@ -38,6 +38,5 @@ public class Dish
 
     public Chef? Author {get; set;}
 
-    // public List<Chef> AllChefs = new List<Chef>();
 
 }

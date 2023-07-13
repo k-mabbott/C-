@@ -19,7 +19,7 @@ public class Chef
     public string LastName { get; set; }
 
     [Required]
-    [CantBeFuture]
+    [MustBe18]
     [Display(Name = "Date of Birth")]
     public DateTime? DoB { get; set; }
 
@@ -60,28 +60,24 @@ public class MustBe18 : ValidationAttribute
         {
             return new ValidationResult("Date of Birth must be provided!");
         }
-        DateTime Val = (DateTime)value;
-        DateTime Curr = DateTime.Today;
-        DateTime tmp = Curr;
-        // DateTime dt_18 = Val.AddYears(-18);
 
-        // if (Val.Date >= dt_18.Date)
-        // {
-        //     return new ValidationResult("Must be at least 18 years old!");
-        // }
-        // DateTime tmp = Val;
-        int years = -1;
-        while (Val < Curr)
-        {
-            years++;
-            tmp = tmp.AddYears(1);
-        }
-        // int age = 0;
-        // age = DateTime.Today.AddYears(-Val.Year).Year;
-        if (years < 18)
+        var age = GetAge((DateTime)value);
+        if (age < 18)
         {
             return new ValidationResult("Must be at least 18 years old!");
         }
         return ValidationResult.Success;
+    }
+
+
+    int GetAge(DateTime bornDate)
+    {
+        DateTime today = DateTime.Today;
+        int age = today.Year - bornDate.Year;
+        if (bornDate > today.AddYears(-age))
+        {
+            age--;
+        }
+        return age;
     }
 }

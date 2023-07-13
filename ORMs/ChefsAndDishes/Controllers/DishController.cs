@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ChefsAndDishes.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ChefsAndDishes.Controllers;
 
@@ -20,8 +21,8 @@ public class DishController : Controller
     [HttpGet("/dishes")]
     public IActionResult Index()
     {
-        // List<Dish> AllDishes = DB.Dishes.ToList();
-        return View();
+        List<Dish> AllDishes = DB.Dishes.Include(d => d.Author).ToList();
+        return View(AllDishes);
     }
 
     // ---------------------------------NEW DISH FORM
@@ -45,7 +46,7 @@ public class DishController : Controller
         }
         DB.Add(newDish);
         DB.SaveChanges();
-        return RedirectToAction("Index", "Chef");
+        return RedirectToAction("Index");
     }
 
     // // ---------------------------------VIEW ONE DISH 

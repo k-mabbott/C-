@@ -4,8 +4,10 @@
 
 @model Dish
 
-<div>
-    <form asp-action="CreateDish" asp-controller="Dish" method="post" class="container form-control">
+<div class="container" >
+    <h1>Add a Dish</h1>
+    <hr class="mb-4">
+    <form asp-action="CreateDish" asp-controller="Dish" method="post" class="container form-control p-4">
         <div>
             <label asp-for="Name"></label>
             <span asp-validation-for="Name" class="d-block text-danger font-weight-bold"></span>

@@ -39,7 +39,7 @@ public class ChefController : Controller
         {
             DB.Add(newChef);
             DB.SaveChanges();
-            return RedirectToAction("NewChef");
+            return RedirectToAction("Index");
         }
         else
         {

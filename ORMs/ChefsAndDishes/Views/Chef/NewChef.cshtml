@@ -5,8 +5,10 @@
 
 @model Chef
 
-<div>
-    <form asp-action="CreateChef" asp-controller="Chef" method="post" class="container form-control" >
+<div class="container" >
+    <h1>Add a Chef</h1>
+    <hr class="mb-4">
+    <form asp-action="CreateChef" asp-controller="Chef" method="post" class="p-4 form-control" >
         <div>
             <label asp-for="FirstName"></label>
             <span asp-validation-for="FirstName" class="d-block text-danger font-weight-bold" ></span>
