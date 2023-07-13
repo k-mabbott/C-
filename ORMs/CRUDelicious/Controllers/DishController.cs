@@ -72,17 +72,19 @@ public class DishController : Controller
     [HttpPost("dishes/{dishId}/update")]
     public IActionResult UpdateDish(Dish editDish, int dishId)
     {
-        if (!ModelState.IsValid)
-        {
-            return EditDish(dishId);
-        }
-
         Dish? dish = DB.Dishes.FirstOrDefault(d => d.DishId == dishId);
 
         if (dish == null)
         {
             return RedirectToAction("Index");
         }
+
+        if (!ModelState.IsValid)
+        {
+            // return EditDish(dishId);
+            return View("EditDish", dish);
+        }
+
         dish.Name = editDish.Name;
         dish.Chef = editDish.Chef;
         dish.Tastiness = editDish.Tastiness;
