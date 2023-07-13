@@ -56,7 +56,7 @@ public class UserController : Controller
             return View("Index");
         }
         PasswordHasher<LoginUser> hasher = new PasswordHasher<LoginUser>();
-        var result = hasher.VerifyHashedPassword(userSubmission, userInDb.Password, userSubmission.LoginPassword);                                    // Result can be compared to 0 for failure        
+        var result = hasher.VerifyHashedPassword(userSubmission, userInDb.Password, userSubmission.LoginPassword);
         if (result == 0)
         {
             ModelState.AddModelError("LoginEmail", "Invalid Credentials");
@@ -66,6 +66,8 @@ public class UserController : Controller
         return RedirectToAction("Success", "Home");
     }
 
+
+    // ----------------------------- LOGOUT USER
     [HttpPost("users/logout")]
     public IActionResult Logout()
     {
