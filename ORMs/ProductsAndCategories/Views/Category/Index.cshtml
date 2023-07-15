@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Categories";
+}
+
+
+<div class="text-center">
+    <div class="d-flex justify-content-between container">
+        <section class="card shadow p-3 w-100 m-3">
+            <h1 class="display-4 my-3">New Category</h1>
+            <hr class="my-3 w-75 mx-auto">
+            @await Html.PartialAsync("_NewCategory")
+        </section>
+        <section class="card shadow p-3 w-100 m-3">
+            <h1 class="display-4 my-3">All Categories</h1>
+            <hr class="my-3 w-75 mx-auto">
+            @foreach (Category c in ViewBag.allCategories)
+            {
+                <p> 
+                    <a asp-action="OneCategory" asp-controller="Category" asp-route-categoryId="@c.CategoryId">
+                        @c.Name
+                    </a>
+                </p>
+            }
+        </section>
+    </div>
+</div>

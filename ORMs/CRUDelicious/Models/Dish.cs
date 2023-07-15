@@ -10,6 +10,7 @@ public class Dish
 
 
     public int DishId { get; set; }
+    
     [Display(Name = "Name of the Dish")]
     [Required]
     [MaxLength(45, ErrorMessage ="Name must be less than 45 characters long")]

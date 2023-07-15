@@ -1,0 +1,64 @@
+@{
+    ViewData["Title"] = "Products";
+}
+
+@model Product
+
+
+<main>
+    <h1 class="text-center m-2">@Model.Name</h1>
+    <hr class="w-100 mx-auto m-4">
+    @{
+        double price = 0;
+        if (Model.Price != null)
+        {
+            price = (double)@Model.Price;
+            price = Math.Round(price, 2);
+        }
+    }
+    <h4 class="text-center" >Description: @Model.Description</h4>
+    <p style="text-decoration: underline;" class="text-center" >Price: $ @price</p>
+    <div class="text-center d-flex justify-content-between">
+        <aside class="w-75">
+            <h2>Categories</h2>
+            <hr class="w-50 mx-auto">
+            <div class="container">
+                @{
+                    if (Model.Categories != null)
+                    {
+                        foreach (ProductCategory c in Model.Categories)
+                        {
+                            <div class="d-flex justify-content-around " >
+                                <p>@c.Category?.Name</p>
+                                <form asp-action="RemoveCategory" asp-controller="Product" asp-route-productId="@Model.ProductId" method="post">
+                                    <input hidden name="categoryId" value="@c.Category?.CategoryId">
+                                    <button class="btn btn-outline-danger btn-sm">Delete</button>
+                                </form>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        </aside>
+
+        <aside class="w-75">
+            <h2>Add Category</h2>
+            <hr class="w-50 mx-auto">
+            <form asp-action="AddCategory" asp-controller="Product" asp-route-productId="@Model.ProductId" method="post">
+                <div>
+                    <label for="categoryId"></label>
+                    <select name="categoryId" id="categoryId">
+                        <option value="" selected hidden>Please Select a Category</option>
+                        @foreach (Category c in ViewBag.categories)
+                        {
+                            <option value="@c.CategoryId">@c.Name</option>
+                        }
+                    </select>
+                </div>
+                <button class="btn btn-outline-primary m-3">Add</button>
+            </form>
+        </aside>
+    </div>
+</main>
+
+

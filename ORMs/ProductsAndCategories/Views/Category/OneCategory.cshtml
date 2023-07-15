@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = @Model.Name;
+}
+
+@model Category
+
+
+<main>
+    <h1 class="text-center m-2" >@Model.Name</h1>
+    <hr class="w-100 mx-auto m-4" >
+    <div class="text-center d-flex justify-content-between">
+        <aside class="w-75">
+            <h2>Products</h2>
+            <hr class="w-50 mx-auto" >
+            <div class="container">
+                @{
+                    if (Model.Products != null)
+                    {
+                        foreach (ProductCategory p in Model.Products)
+                        {
+                            <div class="d-flex justify-content-around " >
+                                <p>@p.Product?.Name</p>
+                                <form asp-action="RemoveProduct" asp-controller="Category" asp-route-categoryId="@Model.CategoryId" >
+                                    <input hidden name="productId" value="@p.Product?.ProductId" >
+                                    <button class="btn btn-outline-danger btn-sm" >Delete</button>
+                                </form>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        </aside>
+
+        <aside class="w-75" >
+            <h2>Add Category</h2>
+            <hr class="w-50 mx-auto">
+            <form  asp-action="AddProduct" asp-controller="Category" asp-route-categoryId="@Model.CategoryId" method="post" >
+                <div>
+                    <label for="ProductId"></label>
+                    <select name="ProductId" id="ProductId">
+                        <option value="" selected hidden>Please Select a Product</option>
+                        @foreach (Product p in ViewBag.products)
+                        {
+                            <option value="@p.ProductId">@p.Name</option>
+                        }
+                    </select>
+                </div>
+                <button class="btn btn-outline-primary m-3">Add</button>
+            </form>
+        </aside>
+    </div>
+</main>
+
+
