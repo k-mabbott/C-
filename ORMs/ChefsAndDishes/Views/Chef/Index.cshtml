@@ -27,7 +27,7 @@
                             age = DateTime.Now.AddYears(-Val.Year).Year;
                         }
                     <td>@age</td>
-                    <td>@c.AllDishes.Count</td>
+                    <td>@c.AllDishes?.Count</td>
                 </tr>
             } }
         </tbody>

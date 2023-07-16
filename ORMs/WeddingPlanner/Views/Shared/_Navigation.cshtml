@@ -1,0 +1,25 @@
+@{
+    string? controller = ViewContext.RouteData.Values["Controller"]?.ToString();
+    string? action = ViewContext.RouteData.Values["Action"]?.ToString();
+}
+
+
+<header class="d-flex justify-content-between py-2" >
+    <h1>Welcome, @Context.Session.GetString("UserName")</h1>
+    <nav class="align-items-center d-flex gap-4">
+        <div>
+            <a class="text-lg fs-5 @(controller == "Wedding" && action == "Index" ? "text-decoration-none text-dark" : "" )"
+                asp-controller="Wedding" asp-action="Index">Home</a>
+        </div>
+        <div>
+            <a class="text-lg fs-5 @(controller == "Wedding" && action == "NewWedding" ? "text-decoration-none text-dark" : "" )"
+                asp-controller="Wedding" asp-action="NewWedding">Plan a Wedding</a>
+        </div>
+        <div>
+            <form asp-action="Logout" asp-controller="User">
+                <button class="btn btn-outline-primary btn-sm" >Logout</button>
+            </form>
+        </div>
+    </nav>
+</header>
+<hr class="p-0 m-0 mb-4">

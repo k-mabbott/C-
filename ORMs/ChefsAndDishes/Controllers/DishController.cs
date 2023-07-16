@@ -22,6 +22,7 @@ public class DishController : Controller
     public IActionResult Index()
     {
         List<Dish> AllDishes = DB.Dishes.Include(d => d.Author).ToList();
+        // List<Dish> AllDishes = DB.Dishes.Include(d => d.Author).OrderBy(a => a.Author.FirstName).ToList();
         return View(AllDishes);
     }
 

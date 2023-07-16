@@ -178,7 +178,7 @@ public class HomeController : Controller
 
 
 -------------------------------------------------
-How to do Migrations
+How to do Migrations  ***********************
 -------------------------------------------------
 
 dotnet ef migrations add !!FirstMigration     // !! HAVE to change the name each time. 

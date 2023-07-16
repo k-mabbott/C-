@@ -1,7 +1,7 @@
 ﻿
 @{
-    string controller = ViewContext.RouteData.Values["Controller"].ToString();
-    string action = ViewContext.RouteData.Values["Action"].ToString();
+    string? controller = ViewContext.RouteData.Values["Controller"]?.ToString();
+    string? action = ViewContext.RouteData.Values["Action"]?.ToString();
 }
 
 <!DOCTYPE html>

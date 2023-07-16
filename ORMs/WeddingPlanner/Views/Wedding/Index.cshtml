@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model List<Wedding>
+
+@await Html.PartialAsync("_Navigation")
+
+<div class="text-center container">
+    <table class="table table-bordered table-hover table-secondary">
+        <thead>
+            <tr>
+                <th>Wedding of</th>
+                <th>Date</th>
+                <th>Guest Count</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Wedding w in Model)
+            {
+                <tr>
+                    <td> 
+                        <a asp-action="OneWedding" asp-controller="Wedding" asp-route-weddingId="@w.WeddingId" > 
+                            @w.WedderOne & @w.WedderTwo 
+                        </a> 
+                    </td>
+                    <td>@{
+                            DateTime date = w.Date.HasValue ? (DateTime)w.Date : DateTime.Today;
+
+                            string fDate = date.ToString("dddd, dd MMMM yyyy");
+                        }
+                        @fDate
+                    </td>
+                    <td>@w.Guests.Count</td>
+                    <td>
+                        @{
+                            int? UID = Context.Session.GetInt32("UserId");
+                            bool existingRsvp = w.Guests.Any(g => g.UserId == UID);
+
+                            if (w.UserId == UID)
+                            {
+                                <form asp-action="DeleteWedding" asp-controller="Wedding" asp-route-weddingId="@w.WeddingId">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                                </form>
+                            }
+                            else
+                            {
+
+                                <form asp-action="HandleRsvp" asp-controller="Wedding" asp-route-weddingId="@w.WeddingId"
+                                    method="post">
+                                    <button class="btn btn-outline-primary btn-sm">
+                                        @if (existingRsvp)
+                                        {
+                                            <span>Un-RSVP</span>
+                                        }
+                                        else
+                                        {
+                                            <span>RSVP</span>
+                                        }
+                                    </button>
+                                </form>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
