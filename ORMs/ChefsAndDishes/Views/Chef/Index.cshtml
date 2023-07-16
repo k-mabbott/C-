@@ -21,8 +21,7 @@
                 <tr>
                     <td>@c.FirstName @c.LastName</td>
                     @{
-                            DateTime Curr = DateTime.Today;
-                            DateTime Val = (DateTime)c.DoB;
+                            DateTime Val = c.DoB.HasValue ? (DateTime)c.DoB : DateTime.Today ;
                             int age = 0;
                             age = DateTime.Now.AddYears(-Val.Year).Year;
                         }
