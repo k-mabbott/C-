@@ -32,6 +32,7 @@ public class Wedding
 
 
     // -------FK-------
+    [Required]
     public int UserId { get; set; }
 
     public List<WeddingRsvp> Guests { get; set; } = new List<WeddingRsvp>();

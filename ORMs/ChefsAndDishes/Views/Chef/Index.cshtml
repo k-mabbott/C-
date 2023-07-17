@@ -16,19 +16,27 @@
             </tr>
         </thead>
         <tbody>
-            @{ foreach (var c in Model)
-            {
-                <tr>
-                    <td>@c.FirstName @c.LastName</td>
-                    @{
-                            DateTime Val = c.DoB.HasValue ? (DateTime)c.DoB : DateTime.Today ;
-                            int age = 0;
-                            age = DateTime.Now.AddYears(-Val.Year).Year;
+            @{
+                foreach (var c in Model)
+                {
+                    <tr>
+                        <td>@c.FirstName @c.LastName</td>
+                        @{
+                            DateTime Val = c.DoB.HasValue ? (DateTime)c.DoB : DateTime.Today;
+                            @* int age = 0;
+                age = DateTime.Now.AddYears(-Val.Year).Year; *@
+                            DateTime today = DateTime.Today;
+                            int age = today.Year - Val.Year;
+                            if (Val > today.AddYears(-age))
+                            {
+                                age--;
+                            }
                         }
-                    <td>@age</td>
-                    <td>@c.AllDishes?.Count</td>
-                </tr>
-            } }
+                        <td>@age</td>
+                        <td>@c.AllDishes?.Count</td>
+                    </tr>
+                }
+            }
         </tbody>
     </table>
 </div>

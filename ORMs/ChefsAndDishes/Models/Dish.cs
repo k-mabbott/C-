@@ -18,7 +18,7 @@ public class Dish
 
 
     [Required (ErrorMessage="The Tastiness field is required")]
-    [Range(1,5, ErrorMessage ="Must be at least 1 and less than 5")]
+    [Range(1,5, ErrorMessage ="The Tastiness field is required")]
     public int? Tastiness { get; set; }
 
 
@@ -32,8 +32,9 @@ public class Dish
     public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
 
-    [Required (ErrorMessage="The Name of Chef field is required")]
+    [Required]
     [Display(Name = "Name of Chef")]
+    [Range(0, int.MaxValue , ErrorMessage ="The Name of Chef field is required")]
     public int ChefId {get; set;}
 
     public Chef? Author {get; set;}

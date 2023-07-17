@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model MessageViewModel
+
+
+<nav class="d-flex align-items-center justify-content-between my-2 border-bottom border-secondary">
+    <h2 class="display-5">Coding Dojo Wall</h2>
+    <div class="d-flex align-items-center gap-4">
+        <p class="fs-4 my-auto">Welcome, @Context.Session.GetString("UserName")</p>
+        <form asp-action="Logout" asp-controller="User" class="text-right">
+            <button class="btn btn-outline-danger">Logout</button>
+        </form>
+    </div>
+</nav>
+@* // -------------------------------New Message Form *@
+<div class="ps-4">
+    @await Html.PartialAsync("_NewMessage", Model.Message)
+
+    @* // -------------------------------All Messages Display *@
+    <div class="d-flex flex-column gap-3 mt-3" >
+        @foreach (Message m in Model.Messages)
+        {
+            <div class="ps-4 p-2 border border-secondary d-flex flex-column rounded-2 gap-2 shadow-">
+                <p class="fw-bold">
+                    @m.Creator?.FirstName @m.Creator?.LastName[0] - @m.CreatedAt.ToString("MMMM dd yyyy")
+                </p>
+                <p class="ps-4">@m.MessageText</p>
+                @foreach (Comment c in m.Comments)
+                {
+                    <div class="ps-4 p-2 border rounded-2">
+                        <p class="fw-bold">
+                            @c.Commentor?.FirstName @c.Commentor?.LastName[0] - @c.CreatedAt.ToString("MMMM dd yyyy")
+                        </p>
+                        <p class="ps-4">@c.CommentText</p>
+                    </div>
+                }
+                @{
+                    int mId = m.MessageId;
+                    ViewData["MId"] = mId;
+                }
+                <div>
+                    @await Html.PartialAsync("_NewComment", Model.Comment, ViewData )
+                </div>
+            </div>
+        }
+    </div>
+</div>

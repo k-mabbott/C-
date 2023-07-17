@@ -17,7 +17,7 @@
             <label asp-for="ChefId"></label>
             <span asp-validation-for="ChefId" class="d-block text-danger font-weight-bold"></span>
             <select asp-for="ChefId" id="ChefId" class="form-select">
-                <option selected hidden>Please Select a Chef</option>
+                <option value="-1" selected hidden>Please Select a Chef</option>
                 @{foreach (var c in ViewBag.Chefs)
                 {
                     <option value="@c.ChefId">@c.FirstName @c.LastName</option>
@@ -29,7 +29,7 @@
             <label asp-for="Tastiness"></label>
             <span asp-validation-for="Tastiness" class="d-block text-danger font-weight-bold"></span>
             <select asp-for="Tastiness" id="Tastiness" class="form-select">
-                <option value="" selected hidden>Please Select one</option>
+                <option value="-1" selected hidden>Please Select one</option>
                 <option value="1">One (not good)</option>
                 <option value="2">Two</option>
                 <option value="3">Three (take it or leave it)</option>
