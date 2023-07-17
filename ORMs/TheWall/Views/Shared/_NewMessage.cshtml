@@ -5,7 +5,7 @@
     <form asp-action="CreateMessage" asp-controller="Message" method="post">
         <div class="mb-3">
             <span style="font-weight: 600;" asp-validation-for="MessageText" class="text-danger d-block "></span>
-            <input asp-for="MessageText" class="form-control">
+            <input style="height:3rem" asp-for="MessageText" class="form-control">
         </div>
         <div class="d-flex flex-row-reverse">
             <button type="submit" class="btn btn-outline-success w-25">Message</button>

@@ -56,7 +56,7 @@ public class CategoryController : Controller
             CategoryId = catId
         };
 
-        DB.Add(newConnection);
+        DB.ProductCategories.Add(newConnection);
         DB.SaveChanges();
 
         return RedirectToAction("OneCategory", new {categoryId});
