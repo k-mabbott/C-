@@ -30,6 +30,8 @@ public class ProductController : Controller
     {
         if (!ModelState.IsValid)
         {
+            List<Product> allProducts = DB.Products.ToList();
+            ViewBag.allProducts = allProducts;
             return View("Index");
         }
 
@@ -45,9 +47,9 @@ public class ProductController : Controller
     {
 
         ProductCategory? existing = DB.ProductCategories.FirstOrDefault(a => a.CategoryId == categoryId && a.ProductId == productId);
-        if(existing != null)
+        if (existing != null)
         {
-            return RedirectToAction("OneProduct", new {productId});
+            return RedirectToAction("OneProduct", new { productId });
         }
         ProductCategory newConnection = new ProductCategory()
         {
@@ -84,12 +86,12 @@ public class ProductController : Controller
     public IActionResult RemoveCategory(int productId, int categoryId)
     {
         ProductCategory? existing = DB.ProductCategories.FirstOrDefault(a => a.CategoryId == categoryId && a.ProductId == productId);
-        if(existing != null)
+        if (existing != null)
         {
-        DB.ProductCategories.Remove(existing);
+            DB.ProductCategories.Remove(existing);
         }
         DB.SaveChanges();
-        return RedirectToAction("OneProduct", new {productId});
+        return RedirectToAction("OneProduct", new { productId });
     }
 
 }

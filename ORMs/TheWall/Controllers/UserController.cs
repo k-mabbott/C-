@@ -53,7 +53,7 @@ public class UserController : Controller
 
         if (userInDb == null)
         {
-            ModelState.AddModelError("Email", "Invalid Credentials");
+            ModelState.AddModelError("LoginEmail", "Invalid Credentials");
             return View("Index");
         }
         PasswordHasher<LoginUser> hasher = new PasswordHasher<LoginUser>();

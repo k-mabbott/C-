@@ -1,5 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+
+    int? UID = Context.Session.GetInt32("UserId");
+
 }
 
 @model MessageViewModel
@@ -19,20 +22,36 @@
     @await Html.PartialAsync("_NewMessage", Model.Message)
 
     @* // -------------------------------All Messages Display *@
-    <div class="d-flex flex-column gap-3 mt-3" >
+    <div class="d-flex flex-column gap-3 mt-3">
         @foreach (Message m in Model.Messages)
         {
             <div class="ps-4 p-2 pt-4 border border-secondary d-flex flex-column rounded-2 gap-2 shadow-">
-                <p class="fw-bold">
-                    @m.Creator?.FirstName @m.Creator?.LastName[0] - @m.CreatedAt.ToString("MMMM dd yyyy")
-                </p>
+                <div class="d-flex justify-content-between">
+                    <p class="fw-bold">
+                        @m.Creator?.FirstName @m.Creator?.LastName[0] - @m.CreatedAt.ToString("MMMM dd yyyy")
+                    </p>
+                    @if (m.Creator?.UserId == UID)
+                    {
+                        <form asp-action="DeleteMessage" asp-controller="Message" asp-route-mId="@m.MessageId" method="post">
+                            <button class="btn btn-outline-danger btn-sm">Delete message</button>
+                        </form>
+                    }
+                </div>
                 <p class="ps-4">@m.MessageText</p>
                 @foreach (Comment c in m.Comments)
                 {
                     <div class="ps-4 p-2 border rounded-2">
-                        <p class="fw-bold">
-                            @c.Commentor?.FirstName @c.Commentor?.LastName[0] - @c.CreatedAt.ToString("MMMM dd yyyy")
-                        </p>
+                        <div class="d-flex justify-content-between" >
+                            <p class="fw-bold">
+                                @c.Commentor?.FirstName @c.Commentor?.LastName[0] - @c.CreatedAt.ToString("MMMM dd yyyy")
+                            </p>
+                            @if (c.Commentor?.UserId == UID)
+                            {
+                                <form asp-action="DeleteComment" asp-controller="Comment" asp-route-cId="@c.CommentId" method="post">
+                                    <button class="btn btn-outline-danger btn-sm">Delete comment</button>
+                                </form>
+                            }
+                        </div>
                         <p class="ps-4">@c.CommentText</p>
                     </div>
                 }

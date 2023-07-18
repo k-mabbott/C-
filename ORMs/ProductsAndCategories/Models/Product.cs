@@ -17,6 +17,7 @@ public class Product
     public string Description { get; set; }
 
     [Required (ErrorMessage ="The Price field is required.")]
+    [RegularExpression(@"^\d$", ErrorMessage = "Price must be a number!")]
     public double? Price { get; set; }
 
     public DateTime CreatedAt { get; set; } = DateTime.Now;

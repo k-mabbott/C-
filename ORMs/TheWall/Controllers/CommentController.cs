@@ -33,6 +33,18 @@ public class CommentController : Controller
         return RedirectToAction("Index", "Message");
     }
 
+    [HttpPost("comments/{cId}/destroy")]
+    public IActionResult DeleteComment(int cId)
+    {
+        Comment? exisiting = DB.Comments.FirstOrDefault(c => c.CommentId == cId);
+        if (exisiting != null)
+        {
+            DB.Comments.Remove(exisiting);
+            DB.SaveChanges();
+        }
+        return RedirectToAction("Index", "Message");
+    }
+
     // public IActionResult Privacy()
     // {
     //     return View();

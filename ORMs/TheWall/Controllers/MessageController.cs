@@ -52,6 +52,18 @@ public class MessageController : Controller
         return RedirectToAction("Index");
     }
 
+    [HttpPost("messages/{mId}/destroy")]
+    public IActionResult DeleteMessage(int mId)
+    {
+        Message? exisiting = DB.Messages.FirstOrDefault( m => m.MessageId == mId);
+        if(exisiting != null)
+        {
+            DB.Messages.Remove(exisiting);
+            DB.SaveChanges();
+        }
+        return RedirectToAction("Index");
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
