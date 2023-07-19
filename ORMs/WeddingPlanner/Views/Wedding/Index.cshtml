@@ -37,7 +37,6 @@
                         @{
                             int? UID = Context.Session.GetInt32("UserId");
                             bool existingRsvp = w.Guests.Any(g => g.UserId == UID);
-
                             if (w.UserId == UID)
                             {
                                 <form asp-action="DeleteWedding" asp-controller="Wedding" asp-route-weddingId="@w.WeddingId">
@@ -46,7 +45,6 @@
                             }
                             else
                             {
-
                                 <form asp-action="HandleRsvp" asp-controller="Wedding" asp-route-weddingId="@w.WeddingId"
                                     method="post">
                                     <button class="btn btn-outline-primary btn-sm">

@@ -85,3 +85,18 @@ public class UserController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
+
+
+// using Microsoft.AspNetCore.Mvc.Filters;
+
+// public class SessionCheckAttribute : ActionFilterAttribute
+// {
+//     public override void OnActionExecuting(ActionExecutingContext context)
+//     {
+//         int? userId = context.HttpContext.Session.GetInt32("UserId");
+//         if(userId == null)
+//         {
+//             context.Result = new RedirectToActionResult("Index", "User", null);
+//         }
+//     }
+// }

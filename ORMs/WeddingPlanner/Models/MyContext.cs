@@ -27,8 +27,6 @@ public class MyContext : DbContext
 
 
 
-
-
     // protected override void OnModelCreating(ModelBuilder modelBuilder)
     // {
     //     modelBuilder.Entity<User>().Ignore(u => u.Allen);
