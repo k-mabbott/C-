@@ -18,20 +18,24 @@ public class CommentController : Controller
     }
 
 
-    // -----------------------------Create Comment
-    [HttpPost("comment/create/{mId}")]
-    public IActionResult CreateComment(Comment newComment, int mId)
-    {
-        int? UID = HttpContext.Session.GetInt32("UserId");
-        if (UID != null)
-        {
-            newComment.UserId = (int)UID;
-            newComment.MessageId = mId;
-            DB.Comments.Add(newComment);
-            DB.SaveChanges();
-        }
-        return RedirectToAction("Index", "Message");
-    }
+    // // -----------------------------Create Comment
+    // [HttpPost("comment/create/{mId}")]
+    // public IActionResult CreateComment(Comment newComment, int mId)
+    // {
+    //     if(!ModelState.IsValid)
+    //     {
+    //         return RedirectToAction("Index", "Message");
+    //     }
+    //     int? UID = HttpContext.Session.GetInt32("UserId");
+    //     if (UID != null)
+    //     {
+    //         newComment.UserId = (int)UID;
+    //         newComment.MessageId = mId;
+    //         DB.Comments.Add(newComment);
+    //         DB.SaveChanges();
+    //     }
+    //     return RedirectToAction("Index", "Message");
+    // }
 
     [HttpPost("comments/{cId}/destroy")]
     public IActionResult DeleteComment(int cId)
