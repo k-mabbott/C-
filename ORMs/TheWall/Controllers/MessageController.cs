@@ -28,7 +28,7 @@ public class MessageController : Controller
 
         MessageViewModel MessagesModel = new MessageViewModel();
 
-        MessagesModel.Messages = DB.Messages.Include(a => a.Creator).Include(m => m.Comments).ThenInclude(c => c.Commentor).ToList();
+        MessagesModel.Messages = DB.Messages.OrderByDescending(m => m.CreatedAt).Include(a => a.Creator).Include(m => m.Comments).ThenInclude(c => c.Commentor).ToList();
 
         return View(MessagesModel);
     }

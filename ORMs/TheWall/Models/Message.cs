@@ -14,7 +14,7 @@ public class Message
 
     [Required]
     [Display(Name ="Post a message")]
-    [MaxLength(45)]
+    [MaxLength(255)]
     public string MessageText { get; set; }
 
     public DateTime CreatedAt { get; set; } = DateTime.Now;

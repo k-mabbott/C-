@@ -14,7 +14,7 @@ public class Comment
 
     [Required]
     [Display(Name ="Post a comment")]
-    [MaxLength(45)]
+    [MaxLength(255)]
     public string CommentText { get; set; }
 
     public DateTime CreatedAt { get; set; } = DateTime.Now;
