@@ -17,15 +17,18 @@ public class Dish
     public string Name { get; set; }
 
 
-    [Required (ErrorMessage="The Tastiness field is required")]
-    [Range(1,5, ErrorMessage ="The Tastiness field is required")]
-    public int? Tastiness { get; set; }
+    [Required (ErrorMessage="The Difficulty field is required")]
+    [Range(1,5, ErrorMessage ="The Difficulty field is required")]
+    public int? Difficulty { get; set; }
 
 
     [Required (ErrorMessage="The Calories field is required")]
-    // [Range(0,5000, ErrorMessage ="Must be greater than zero and less than 5,000")]
-    [Range(0,5000, ErrorMessage ="Value for {0} must be between {1} and {2}.")]
+    [Range(0,8000, ErrorMessage ="Value for {0} must be between {1} and {2}.")]
     public int? Calories { get; set; }
+
+    [Required (ErrorMessage="The Description field is required")]
+    [MinLength(15, ErrorMessage ="That can't be long enough to describe it...")]
+    public string Description { get; set; }
 
 
     public DateTime CreatedAt { get; set; } = DateTime.Now;
