@@ -71,6 +71,7 @@ public class HomeController : Controller
             TheNum += rand.Next(1,11);
         }
         HttpContext.Session.SetInt32("UserNum", (int)TheNum);
+        
         return RedirectToAction("Dashboard");
     }
 
